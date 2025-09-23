@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MediaForge: AI Media Generator 🎨
 
-## Getting Started
+> A clean and responsive web application for generating AI media, built to showcase the power and simplicity of the Runware API.
 
-First, run the development server:
+<img width="639" height="877" alt="image" src="https://github.com/user-attachments/assets/839c7e9a-ef7c-49ee-afa7-7201d91cb45f" />
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Test it out here:** [https://media-generator-two.vercel.app/]
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ## Introduction
 
-## Learn More
+This project was developed as part of a graduate role assessment for **Runware**. The primary objective was to build a fully functional web application from scratch, demonstrating a deep understanding of modern web technologies and, most importantly, showcasing how seamlessly the **Runware API** can be integrated to power a creative tool.
 
-To learn more about Next.js, take a look at the following resources:
+The app, MediaForge, allows users to generate high-quality images and videos from text prompts, leveraging the advanced models available through the Runware SDK.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ## Features
 
-## Deploy on Vercel
+- **🖼️ Image & Video Generation:** Seamlessly switch between generating images and videos.
+- **✍️ Custom Prompts:** Use positive and negative prompts for fine-tuned control over the output.
+- **⚙️ Generation Options:** Customize outputs with options for image dimensions, video duration, speed, and quality.
+- **📥 Download Media:** Easily download the generated images or videos.
+- **💅 Clean & Responsive UI:** A simple and intuitive interface built with Tailwind CSS that works on all devices.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Language:** JavaScript
+- **API:** [Runware SDK for JS](https://runwayml.com/docs/sdk/)
+- **Deployment:** [Vercel](https://vercel.com/)
+
+---
+
+## ## Image inference samples:
+![19366307-5fc5-424e-89c7-d0ecab980033](https://github.com/user-attachments/assets/272cfa30-940f-458e-bc4c-a8601685e716)
+![e3b01f6e-9c87-4b12-855d-3a3a2c731b18](https://github.com/user-attachments/assets/845e6346-74b5-4840-b31e-e5bfc6c26d62)
+
