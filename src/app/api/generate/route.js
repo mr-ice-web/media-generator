@@ -2,7 +2,7 @@ import { Runware } from "@runware/sdk-js";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  // Get all the parameters from the frontend request
+  // Getting all parameters from the frontend
   const { mode = 'image', prompt, nePrompt, w, h, steps, duration } = await request.json();
 
   if (!prompt) {
@@ -20,10 +20,10 @@ export async function POST(request) {
       // Video inference
       const payload = {
         positivePrompt: prompt,
-        model: "bytedance:1@1",
-        duration: parseInt(duration, 10) || 10,
-        width: parseInt(w, 10) || 1024,
-        height: parseInt(h, 10) || 1024
+        model: "klingai:5@3", //hard-coding a cost-effective video model
+        duration: parseInt(duration, 10) || 5,
+        width: parseInt(w, 10) || 1280,
+        height: parseInt(h, 10) || 720
       };
       if (nePrompt) payload.negativePrompt = nePrompt;
       const videos = await runware.videoInference(payload);
@@ -34,7 +34,7 @@ export async function POST(request) {
       const images = await runware.requestImages({
         positivePrompt: prompt,
         negativePrompt: nePrompt,
-        model: "runware:101@1",
+        model: "runware:101@1", //hard-coding a cost-effective image model
         width: parseInt(w, 10) || 1024,
         height: parseInt(h, 10) || 1024,
         steps: parseInt(steps, 10) || 15
@@ -43,8 +43,11 @@ export async function POST(request) {
       return NextResponse.json({ images });
     }
   } catch (error) {
-    // Error information available for debugging and user feedback
+    // Logging and stacking error info for debugging
     console.error('Generation failed:', error);
-    return NextResponse.json({ error: error.message || 'Failed to generate media' }, { status: 500 });
+    return NextResponse.json({
+      error: error.message || 'Failed to generate media',
+      details: error.stack || error
+    }, { status: 500 });
   }
 }

@@ -78,7 +78,7 @@ export default function GeneratorForm({
           Duration (seconds):
           <input
             type="number"
-            min={1}
+            min={5}
             max={10}
             value={duration}
             onChange={e => setDuration(Number(e.target.value))}
@@ -87,9 +87,42 @@ export default function GeneratorForm({
         </label>
       )}
 
-      <button type="submit" disabled={isLoading}>
-        {isLoading ? (mode === 'image' ? 'Generating...' : 'Generating Video...') : (mode === 'image' ? 'Generate Image' : 'Generate Video')}
+      <button type="submit" disabled={isLoading} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+        {isLoading && (
+          <svg
+            className="mr-3"
+            style={{ width: 20, height: 20, marginRight: 8, animation: 'spin 1s linear infinite' }}
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="#fff"
+              strokeWidth="4"
+              opacity="0.25"
+            />
+            <path
+              d="M4 12a8 8 0 018-8"
+              stroke="#fff"
+              strokeWidth="4"
+              strokeLinecap="round"
+              opacity="0.75"
+            />
+          </svg>
+        )}
+        {isLoading
+          ? (mode === 'image' ? 'Generating...' : 'Generating Video...')
+          : (mode === 'image' ? 'Generate Image' : 'Generate Video')}
       </button>
+      <style>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
     </form>
   );
 }

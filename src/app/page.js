@@ -5,17 +5,29 @@ import GeneratorForm from '../components/GeneratorForm';
 import MediaPreview from '../components/MediaPreview';
 
 export default function Home() {
-  const [mode, setMode] = useState('image'); // 'image' or 'video'
+  const [mode, setMode] = useState('image'); // 'image' or 'video' set to 'image' by default
   const [positivePrompt, setPositivePrompt] = useState('An astronaut floating in space');
   const [negativePrompt, setNegativePrompt] = useState('');
   const [width, setWidth] = useState(1024);
   const [height, setHeight] = useState(1024);
   const [steps, setSteps] = useState(20); // default steps
-  const [duration, setDuration] = useState(10); // for video
+  const [duration, setDuration] = useState(5); // for video
   const [generatedMedia, setGeneratedMedia] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [genTime, setGenTime] = useState(null);
+
+  // Setting default width/height for video mode to avoid dimension errors
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+    if (newMode === 'video') {
+      setWidth(1920);
+      setHeight(1080);
+    } else {
+      setWidth(1024);
+      setHeight(1024);
+    }
+  };
 
   const handleSubmit = async () => {
     setIsLoading(true);
@@ -65,14 +77,49 @@ export default function Home() {
 
   return (
     <main>
-      <h1>Runware Media Generator</h1>
-      <div style={{textAlign:'center',marginBottom:16}}>
-        <label style={{marginRight:16}}>
-          <input type="radio" name="mode" value="image" checked={mode==='image'} onChange={()=>setMode('image')} /> Image
-        </label>
-        <label>
-          <input type="radio" name="mode" value="video" checked={mode==='video'} onChange={()=>setMode('video')} /> Video
-        </label>
+      <h1>MediaForge</h1>
+      {/* Tab-style mode selector */}
+      <div style={{display:'flex',justifyContent:'center',marginBottom:16,gap:0}}>
+        <button
+          type="button"
+          onClick={() => handleModeChange('image')}
+          style={{
+            padding: '0.7em 2.2em',
+            border: 'none',
+            borderTopLeftRadius: 8,
+            borderBottomLeftRadius: 8,
+            background: mode==='image' ? '#007bff' : '#e9ecef',
+            color: mode==='image' ? '#fff' : '#333',
+            fontWeight: 600,
+            fontSize: '1.1em',
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+            outline: 'none',
+            boxShadow: mode==='image' ? '0 2px 8px #007bff22' : 'none',
+          }}
+        >
+          Image
+        </button>
+        <button
+          type="button"
+          onClick={() => handleModeChange('video')}
+          style={{
+            padding: '0.7em 2.2em',
+            border: 'none',
+            borderTopRightRadius: 8,
+            borderBottomRightRadius: 8,
+            background: mode==='video' ? '#007bff' : '#e9ecef',
+            color: mode==='video' ? '#fff' : '#333',
+            fontWeight: 600,
+            fontSize: '1.1em',
+            cursor: 'pointer',
+            transition: 'background 0.2s',
+            outline: 'none',
+            boxShadow: mode==='video' ? '0 2px 8px #007bff22' : 'none',
+          }}
+        >
+          Video
+        </button>
       </div>
       <div>
         <MediaPreview
