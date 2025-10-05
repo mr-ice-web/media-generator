@@ -34,7 +34,7 @@ export async function POST(request) {
       const images = await runware.requestImages({
         positivePrompt: prompt,
         negativePrompt: nePrompt,
-        model: "runware:101@1", //hard-coding a cost-effective image model
+        model: "runware:108@5", //hard-coding a cost-effective image model
         width: parseInt(w, 10) || 1024,
         height: parseInt(h, 10) || 1024,
         steps: parseInt(steps, 10) || 15

@@ -22,6 +22,7 @@ export default function MediaPreview({ media, isLoading, error, mode }) {
   const [objectUrl, setObjectUrl] = React.useState(null);
   const [loadingBlob, setLoadingBlob] = React.useState(false);
 
+  // Reset preview when mode changes or media changes
   React.useEffect(() => {
     if (!media || media.length === 0) {
       setObjectUrl(null);
@@ -32,7 +33,6 @@ export default function MediaPreview({ media, isLoading, error, mode }) {
       setObjectUrl(null);
       return;
     }
-    // For images, we may need to fetch the blob and create an object URL
     if (mode === 'image') {
       const isDirect = /\.(jpg|jpeg|png|gif|webp|bmp)$/i.test(first.url);
       if (isDirect) {
@@ -57,11 +57,9 @@ export default function MediaPreview({ media, isLoading, error, mode }) {
         }
       };
     } else {
-      // For video, just use the url
       setObjectUrl(first.url);
     }
-    
-  }, [media && media[0]?.url, mode]);
+  }, [media, mode]);
 
   // Creating a preview box that always shows, with placeholder if no media
   return (

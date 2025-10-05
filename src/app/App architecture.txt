@@ -1,0 +1,12 @@
+├─ .env.local #this is an invisible file where the API key lives
+├─ src/
+│ └─ app/ # this is where the app lives
+│ 	└─ global.css #global styling
+│ 	└─ layout.js #layout template wrapper that generates the standard html elements
+│ 	└─ page.js #the main content page or the homepage of the app
+│ 	└─api/ #sub-folder for backend integration and API calling
+│ 	 └─ generate/ #sub-folder for backend
+│ └─ route.js  #to authenticate runware API and pass the frontend parameters
+│ └─ components/
+│ 	└─ GeneratorForm.js # form generator component that captures user input
+│ 	└─ MediaPreview.js # previews API response and placeholder media in the form
